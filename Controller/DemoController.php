@@ -4,6 +4,7 @@ namespace Eo\PassbookBundle\Controller;
 
 use Passbook\Pass\Field;
 use Passbook\Pass\Barcode;
+use Passbook\Pass\Image;
 use Passbook\Pass\Structure;
 use Passbook\Type\EventTicket;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,6 +38,12 @@ class DemoController extends Controller
         $auxiliary = new Field('datetime', '2013-04-15 @10:25');
         $auxiliary->setLabel('Date & Time');
         $structure->addAuxiliaryField($auxiliary);
+        
+        // Add icon image
+        $icon = new Image(__DIR__.'/../Resources/icons/icon.png', 'icon');
+        $ticket->addImage($icon);
+        $icon = new Image(__DIR__.'/../Resources/icons/icon@2x.png', 'icon@2x');
+        $ticket->addImage($icon);
 
         // Set pass structure
         $ticket->setStructure($structure);
